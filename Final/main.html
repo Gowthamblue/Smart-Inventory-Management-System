@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Inventory Management</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <h1>Inventory</h1>
+        <a href="#" class="active" onclick="showSection('dashboard')">
+            <i class="fas fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="#" onclick="showSection('inventory')">
+            <i class="fas fa-box"></i>
+            <span>Inventory</span>
+        </a>
+        <a href="#" onclick="showSection('alerts')">
+            <i class="fas fa-bell"></i>
+            <span>Alerts</span>
+        </a>
+        <a href="#" onclick="showSection('invoice-history-section')">
+            <i class="fas fa-file-alt"></i>
+            <span>Invoice History</span>
+        </a>
+        <a href="#" onclick="showSection('billing-section')">
+            <i class="fas fa-receipt"></i>
+            <span>Billing</span>
+        </a>
+        <a href="#" onclick="showSection('billing-history-section')">
+            <i class="fas fa-history"></i>
+            <span>Billing History</span>
+        </a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main" id="main-content">
+        <span class="toggle-btn" onclick="toggleSidebar()">
+            <i class="fas fa-bars" id="menu-icon"></i>
+        </span>
+
+        <!-- Dashboard Section -->
+        <div id="dashboard" class="section active">
+            <h2>Dashboard</h2>
+            <div class="card">
+                <h3>Total Items</h3>
+                <p id="total-items">Loading...</p>
+            </div>
+            <div class="card">
+                <h3>Low Stock Alerts</h3>
+                <p id="low-stock-alerts">Loading...</p>
+            </div>
+            <div class="card">
+                <h3>Items Sold Today</h3>
+                <p id="items-sold-today">Loading...</p>
+            </div>
+        </div>
+
+        <!-- Inventory Section -->
+        <div id="inventory" class="section">
+            <h2>Inventory</h2>
+            <input type="text" id="search-bar" placeholder="Search for products..." onkeyup="searchInventory()">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Product Name</th>
+                        <th>Order ID</th>
+                        <th>Available Stock</th>
+                        <th>Price (INR)</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Inventory data will be dynamically populated -->
+                    <tr>
+                        <td data-label="Product ID">001</td>
+                        <td data-label="Product Name">Example Product</td>
+                        <td data-label="Order ID">12345</td>
+                        <td data-label="Available Stock">50</td>
+                        <td data-label="Price (INR)">500</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Billing Section -->
+        <div id="billing-section" class="section">
+            <h2>Billing</h2>
+            <form id="billing-form">
+                <label for="product-id">Product ID:</label>
+                <input type="number" id="product-id" name="product_id" required>
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" required>
+                <button type="submit">Generate Bill</button>
+            </form>
+            <p id="billing-result"></p>
+        </div>
+
+        <!-- Billing History Section -->
+        <div id="billing-history-section" class="section">
+            <h2>Billing History</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Billing ID</th>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Total Price</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody id="billing-history-body">
+                    <!-- Billing history will be dynamically populated -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Alerts Section -->
+        <div id="alerts" class="section">
+            <h2>Low Stock Alerts</h2>
+            <table id="alertsTable">
+                <thead>
+                </thead>
+                <tbody>
+                    <!-- Alerts will be dynamically inserted here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+<!-- Invoice History Section -->
+<div id="invoice-history-section" class="section">
+    <h2>Invoice History</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Invoice ID</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+                <th>Date</th>
+                <th>Invoice</th> <!-- New column -->
+            </tr>
+        </thead>
+        <tbody id="invoice-history-body">
+            <!-- Invoice history will be dynamically populated -->
+        </tbody>
+    </table>
+</div>
+
+
+
+<!-- Restock Confirmation Popup -->
+<div id="restock-message" class="popup">
+    <p id="restock-text"></p>
+</div>
+
+    <div id="theme-switcher">
+        <button onclick="setTheme('default')">Default</button>
+        <button onclick="setTheme('blue')">Blue</button>
+        <button onclick="setTheme('green')">Green</button>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function setTheme(themeName) {
+            document.body.className = themeName;
+        }
+        </script>
+</body>
+</html>
