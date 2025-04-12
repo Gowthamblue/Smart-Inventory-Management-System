@@ -1,0 +1,236 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    background-color: #f4f7f6;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #34495e;
+    color: white;
+    position: fixed;
+    height: 100vh;
+    padding: 30px 20px;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    overflow: hidden;
+}
+.sidebar.closed {
+    width: 60px;
+    overflow: hidden;
+}
+.sidebar h1 {
+    font-size: 24px;
+    color: #ecf0f1;
+    text-align: center;
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+}
+.sidebar.closed h1 {
+    display: none;
+}
+.sidebar a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #ecf0f1;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+.sidebar a:hover, .sidebar a.active {
+    background-color: #2980b9;
+}
+.sidebar a i {
+    margin-right: 15px;
+    font-size: 20px;
+    transition: all 0.3s ease;
+}
+.sidebar.closed a i {
+    margin-right: 0;
+}
+.sidebar.closed a span {
+    display: none;
+}
+.sidebar .toggle-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 25px;
+    cursor: pointer;
+    color: #ecf0f1;
+    background: #2980b9;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.sidebar .toggle-btn:hover {
+    background-color: #1a65a8;
+}
+
+/* Main Content */
+.main {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    padding: 30px;
+    transition: all 0.3s ease;
+}
+.main.closed {
+    margin-left: 60px;
+    width: calc(100% - 60px);
+}
+.section {
+    display: none;
+}
+.section.active {
+    display: block;
+}
+.card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 15px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+.card:hover {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+.card h2 {
+    font-size: 20px;
+    color: #34495e;
+    margin-bottom: 10px;
+}
+.card p {
+    font-size: 16px;
+    color: #7f8c8d;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    table-layout: fixed; /* Ensures columns have a fixed width */
+}
+table, th, td {
+    border: 1px solid #ddd;
+}
+th, td {
+    padding: 12px;
+    text-align: center;
+    word-wrap: break-word; /* Ensures long words break to fit within the cell */
+}
+th {
+    background-color: #34495e;
+    color: white;
+}
+
+/* Making table responsive */
+@media (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+        width: 100%;
+    }
+    thead {
+        display: none;
+    }
+    tr {
+        margin-bottom: 10px;
+        display: block;
+    }
+    td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+    td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        width: calc(50% - 20px);
+        text-align: left;
+        font-weight: bold;
+    }
+}
+
+/* Default Theme */
+body.default {
+    background-color: #f4f7f6;
+    color: #333;
+}
+
+/* Blue Theme */
+body.blue {
+    background-color: #e0f7fa;
+    color: #007bff;
+}
+
+/* Green Theme */
+body.green {
+    background-color: #e8f5e9;
+    color: #388e3c;
+}
+/* Animations CSS */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.card, .sidebar a, .table {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Popup Styles */
+
+.popup {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2ecc71; /* Green for success */
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    font-size: 16px;
+    font-weight: bold;
+    min-width: 250px;
+    text-align: center;
+    z-index: 1000;
+    animation: slideIn 0.5s ease, fadeOut 0.5s ease 2.5s forwards;
+}
+
+/* Error Message Styling */
+.popup.error {
+    background: #e74c3c; /* Red for error */
+}
+
+/* Slide-in Animation */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 50px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+/* Fade-out Animation */
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+    }
+}
