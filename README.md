@@ -11,7 +11,6 @@ The **Smart Inventory Management System** helps businesses maintain optimal inve
 
 ## ✨ Features
 
-✅ User Authentication  
 ✅ Dashboard with Live Inventory Status  
 ✅ Real-Time Inventory Updates  
 ✅ Add, Update, Delete Items  
