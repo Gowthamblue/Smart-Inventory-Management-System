@@ -46,7 +46,7 @@ function searchInventory() {
 
 function fetchInventoryData() {
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'fetch.php', true);
+    xhr.open('GET', './Backend/fetch.php', true);
     xhr.onload = function() {
         if (xhr.status === 200) {
             const inventoryData = JSON.parse(xhr.responseText);
@@ -70,7 +70,7 @@ function fetchInventoryData() {
 
 function fetchBillingHistory() {
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'fetch_billing_history.php', true);
+    xhr.open('GET', './Backend/fetch_billing_history.php', true);
     xhr.onload = function() {
         if (xhr.status === 200) {
             const historyData = JSON.parse(xhr.responseText);
@@ -98,7 +98,7 @@ document.getElementById('billing-form').addEventListener('submit', function(e) {
     const quantity = document.getElementById('quantity').value;
 
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'process_billing.php', true);
+    xhr.open('POST', './Backend/process_billing.php', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onload = function() {
         document.getElementById('billing-result').innerHTML = this.responseText;
@@ -116,7 +116,7 @@ window.onload = function() {
 // Function to fetch data for the dashboard
 function updateDashboard() {
     // Fetch data from the backend PHP file
-    fetch('fetch_dashboard_data.php') // Adjust the path as per your project structure
+    fetch('./Backend/fetch_dashboard_data.php') // Adjust the path as per your project structure
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -150,7 +150,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function fetchLowStockAlerts() {
         // Send AJAX request to PHP file to fetch low stock alerts
         const xhr = new XMLHttpRequest();
-        xhr.open('GET', 'get_alerts.php', true); // 'get_alerts.php' is the PHP file that will fetch alerts from the database
+        xhr.open('GET', './Backend/get_alerts.php', true); // 'get_alerts.php' is the PHP file that will fetch alerts from the database
         xhr.onload = function() {
             if (xhr.status === 200) {
                 const alertsTableBody = document.querySelector('#alertsTable tbody');
@@ -175,7 +175,7 @@ document.addEventListener("click", function(event) {
         console.log("Redirecting to restock_invoice.php with:", productId, productName); // Debugging
 
         // Redirect with data in URL
-        window.location.href = `restock_invoice.php?product_id=${productId}&product_name=${productName}`;
+        window.location.href = `./Backend/restock_invoice.php?product_id=${productId}&product_name=${productName}`;
     }
 });
 
