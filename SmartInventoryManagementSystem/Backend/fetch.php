@@ -1,7 +1,8 @@
 <?php
 include 'db_connection.php';
 
-$query = "SELECT product_id, product_name, order_id, available_stock, price FROM products";
+$query = "SELECT product_id, product_name, supplier_id, available_stock, price FROM products";
+echo("connected")
 $result = $conn->query($query);
 
 $products = [];

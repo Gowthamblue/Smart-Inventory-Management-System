@@ -1,5 +1,5 @@
 <?php
-include 'db_connection.php'; // Include database connection
+include 'db_connection.php'; 
 
 $query = "SELECT * FROM products WHERE available_stock < (total_stock * 0.1)";
 $result = mysqli_query($conn, $query);

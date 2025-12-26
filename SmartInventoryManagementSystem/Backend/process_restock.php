@@ -30,10 +30,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $invoice_stmt->bind_param("isid", $product_id, $product_name, $restock_quantity, $total_price);
         $invoice_stmt->execute();
 
-        echo "<script>window.location.href='./FrontEnd/main.html#alerts?restock_success=1';</script>";
+        echo "<script>window.location.href='../FrontEnd/main.html#alerts?restock_success=1';</script>";
         exit();
     } else {
-        echo "<script>window.location.href='./FrontEnd/main.html#alerts?restock_success=0';</script>";
+        echo "<script>window.location.href='../FrontEnd/main.html#alerts?restock_success=0';</script>";
         exit();
     }
 }
